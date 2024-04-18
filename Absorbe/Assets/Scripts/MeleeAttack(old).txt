@@ -1,0 +1,70 @@
+    [Header("Keybinds")]
+    public KeyCode MeleeKey = KeyCode.Mouse0;
+
+    [SerializeField] private UnityEvent PlayEffect;
+
+    
+    public float activeFrames;
+    public float cooldownDuration;
+    private bool onCooldown;
+
+    public GameObject hitbox;
+    
+    void Awake()
+    {
+        
+    }
+
+    void Update()
+    {
+        if(Input.GetKey(MeleeKey) && !onCooldown)
+        {
+            hitbox.SetActive(true);
+        }
+
+        if()
+        {    
+            ActiveFrames();
+
+            if(activeFrames == 0f)
+                Cooldown();
+        }
+    }
+
+    private void Attack()
+    {
+        
+    }
+
+
+    private void ActiveFrames()
+    {
+        activeFrames -= Time.deltaTime;
+        hitbox.SetActive(false);
+        Debug.Log("Attacked");
+
+        if(activeFrames < 0)
+            activeFrames = 0.2f;
+    }
+
+    private void Cooldown()
+    {
+        if(cooldownDuration > 0)
+        {
+            onCooldown = true;
+            cooldownDuration -= Time.deltaTime;
+        }
+
+        if(cooldownDuration < 0)
+        {    
+            cooldownDuration = 0;
+            onCooldown = false;
+        }
+    }
+
+    
+
+    public void Effects()
+    {
+        PlayEffect.Invoke();
+    }
