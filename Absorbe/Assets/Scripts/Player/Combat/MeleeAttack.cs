@@ -19,9 +19,7 @@ public class MeleeAttack : MonoBehaviour
 
     public GameObject weapon;
     private Animator anim;
-    public Transform hitboxPoint;
-
-    private Health _health;
+    public Transform hitboxPos;
     
     void Start()
     {
@@ -47,7 +45,7 @@ public class MeleeAttack : MonoBehaviour
         
         for(int i = 0; i < activeFrames; i++)
         {    
-            Collider[] hitEnemies = Physics.OverlapSphere(hitboxPoint.position, attackRange, enemyLayer);
+            Collider[] hitEnemies = Physics.OverlapSphere(hitboxPos.position, attackRange, enemyLayer);
             
             foreach(Collider enemy in hitEnemies)
             {
@@ -55,18 +53,10 @@ public class MeleeAttack : MonoBehaviour
                 connectHit = true;
             }
 
-            if(connectHit == true);
-                continue;
+            if(connectHit == true)
+                break;
         }
         StartCoroutine(Cooldown());
-    }
-
-    void onDrawGizmosSelected()
-    {
-        if(hitboxPoint == null)
-            return;
-        
-        Gizmos.DrawWireSphere(hitboxPoint.position, attackRange);
     }
 
     private IEnumerator Cooldown()
