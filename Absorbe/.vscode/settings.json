@@ -51,5 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Absorb.sln"
+    "dotnet.defaultSolution": "Absorbe.sln"
 }
