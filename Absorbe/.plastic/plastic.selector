@@ -1,4 +1,0 @@
-repository "Absorbe@Kryptid@cloud"
-  path "/"
-    br "/main"
-    co "/main"
