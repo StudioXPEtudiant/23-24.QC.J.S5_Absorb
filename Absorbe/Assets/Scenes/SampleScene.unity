@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -709,11 +709,15 @@ MonoBehaviour:
   cooldownDuration: 0.5
   attackRange: 2.5
   activeFrames: 10
+  attackDamage: 0
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
   weapon: {fileID: 514554257}
   hitboxPos: {fileID: 514554258}
+  audioSource: {fileID: 0}
+  clip: {fileID: 0}
+  volume: 0.5
 --- !u!1 &580516406
 GameObject:
   m_ObjectHideFlags: 0
@@ -1106,7 +1110,6 @@ GameObject:
   - component: {fileID: 1765457693}
   - component: {fileID: 1765457694}
   - component: {fileID: 1765457695}
-  - component: {fileID: 1765457697}
   - component: {fileID: 1765457698}
   - component: {fileID: 1765457699}
   - component: {fileID: 1765457700}
@@ -1203,28 +1206,6 @@ MonoBehaviour:
   sliding: 0
   climbing: 0
   dashing: 0
---- !u!114 &1765457697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1765457692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b915a8ac4b2730541b7adb7979495c9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MeleeKey: 323
-  onCooldown: 0
-  cooldownDuration: 0.5
-  attackRange: 2.5
-  activeFrames: 5
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  weapon: {fileID: 514554257}
-  hitboxPos: {fileID: 0}
 --- !u!114 &1765457698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3369,6 +3350,7 @@ GameObject:
   - component: {fileID: 5008125676357062353}
   - component: {fileID: 5677842209223136366}
   - component: {fileID: 5677842209223136365}
+  - component: {fileID: 5677842209223136367}
   m_Layer: 7
   m_Name: dummy
   m_TagString: Untagged
@@ -3439,6 +3421,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5677842209223136367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5677842209223136363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b207c42616299f4da390614210b5827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyHealth: 0
+  maxEnemyHealth: 0
+  _dead: 0
+  absorbable: 0
 --- !u!1 &5721411090957223569
 GameObject:
   m_ObjectHideFlags: 0
