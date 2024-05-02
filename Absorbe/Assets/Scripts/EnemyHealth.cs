@@ -35,7 +35,6 @@ public class EnemyHealth : MonoBehaviour
             _dead = true;
             absorbable = false;
 
-            rb.freezeRotation = false;
             rb.AddForce(transform.forward * -2f, ForceMode.Impulse);
         }
     }
