@@ -1109,6 +1109,7 @@ GameObject:
   - component: {fileID: 1765457697}
   - component: {fileID: 1765457698}
   - component: {fileID: 1765457699}
+  - component: {fileID: 1765457700}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1178,6 +1179,7 @@ MonoBehaviour:
   sprintSpeed: 11
   climbSpeed: 5
   slideSpeed: 30
+  dashSpeed: 20
   speedIncreaseMultiplier: 1.5
   slopeIncreaseMultiplier: 2.5
   groundDrag: 5
@@ -1187,7 +1189,7 @@ MonoBehaviour:
   crouchSpeed: 5
   crouchYScale: 0.6
   jumpKey: 32
-  sprintKey: 304
+  sprintKey: 0
   crouchKey: 256
   playerHeight: 2
   whatIsGround:
@@ -1196,9 +1198,11 @@ MonoBehaviour:
   grounded: 0
   maxSlopeAngle: 60
   orientation: {fileID: 76508747}
+  moveDirection: {x: 0, y: 0, z: 0}
   state: 0
   sliding: 0
   climbing: 0
+  dashing: 0
 --- !u!114 &1765457697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1269,6 +1273,26 @@ MonoBehaviour:
   sphereCastRadius: 0.25
   maxWallLookAngle: 30
   minWallNormalAngleChange: 5
+--- !u!114 &1765457700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765457692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5ac9be4682c522489a14e578a82e9cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashForce: 20
+  dashUpwardForce: 0
+  dashDuration: 0.25
+  dashKey: 304
+  dashCd: 1.5
+  dashing: 0
+  orientation: {fileID: 76508747}
+  playerCam: {fileID: 381189824}
 --- !u!1 &1814935621
 GameObject:
   m_ObjectHideFlags: 0

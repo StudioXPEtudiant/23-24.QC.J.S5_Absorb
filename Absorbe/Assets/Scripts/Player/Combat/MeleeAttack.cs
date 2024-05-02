@@ -13,6 +13,7 @@ public class MeleeAttack : MonoBehaviour
     public float cooldownDuration = 0.5f;
     public float attackRange = 2.5f;
     public int activeFrames = 5;
+    public int attackDamage;
     public LayerMask enemyLayer;
 
     private bool connectHit = false;
@@ -20,6 +21,10 @@ public class MeleeAttack : MonoBehaviour
     public GameObject weapon;
     private Animator anim;
     public Transform hitboxPos;
+
+    public AudioSource audioSource;
+    public AudioClip clip;
+    public float volume = 0.5f;
     
     void Start()
     {
@@ -42,6 +47,7 @@ public class MeleeAttack : MonoBehaviour
         onCooldown = true;
         Animator anim = weapon.GetComponent<Animator>();
         anim.SetTrigger("Attack");
+        audioSource.PlayOneShot(clip, volume);
         
         for(int i = 0; i < activeFrames; i++)
         {    
@@ -49,7 +55,7 @@ public class MeleeAttack : MonoBehaviour
             
             foreach(Collider enemy in hitEnemies)
             {
-                Debug.Log("We hit " + enemy.name);
+                enemy.GetComponent<EnemyHealth>().Decrease(20);
                 connectHit = true;
             }
 

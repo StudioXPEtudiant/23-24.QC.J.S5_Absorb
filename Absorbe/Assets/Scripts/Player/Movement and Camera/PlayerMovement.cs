@@ -10,6 +10,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public float sprintSpeed;
     public float climbSpeed;
     public float slideSpeed;
+    public float dashSpeed;
 
     private float desiredMoveSpeed;
     private float lastDesiredMoveSpeed;
@@ -54,7 +55,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     float horizontalInput;
     float verticalInput;
 
-    Vector3 moveDirection;
+    public Vector3 moveDirection;
 
     Rigidbody rb;
     
@@ -67,11 +68,13 @@ public class PlayerMovementAdvanced : MonoBehaviour
         crouching,
         sliding,
         climbing,
+        dashing,
         air
     }
 
     public bool sliding;
     public bool climbing;
+    public bool dashing;
     
     void Start()
     {
@@ -93,7 +96,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         StateHandler();
 
         //handle drag
-        if (grounded)
+        if (state == MovementState.walking || state == MovementState.sprinting || state == MovementState.crouching)
             rb.drag = groundDrag;
         else
             rb.drag = 0;
@@ -145,7 +148,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         }
         
         // Mode - Sliding
-        if(sliding)
+        else if(sliding)
         {
             state = MovementState.sliding;
 
@@ -156,7 +159,14 @@ public class PlayerMovementAdvanced : MonoBehaviour
                 desiredMoveSpeed = sprintSpeed;
         }
 
-        // crouching
+        // Mode - Dashing
+        else if(dashing)
+        {
+            state = MovementState.dashing;
+            moveSpeed = dashSpeed;
+        }
+        
+        // Mode - crouching
         else if(Input.GetKey(crouchKey))
         {
             state = MovementState.crouching;
@@ -184,7 +194,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         }
 
         // check if desiredMoveSpeed has changed drastically
-        if(Mathf.Abs(desiredMoveSpeed - lastDesiredMoveSpeed) > 4f)
+        if(Mathf.Abs(desiredMoveSpeed - lastDesiredMoveSpeed) > 4f && moveSpeed != 0)
         {
             StopAllCoroutines();
             StartCoroutine(SmoothlyLerpMoveSpeed());
